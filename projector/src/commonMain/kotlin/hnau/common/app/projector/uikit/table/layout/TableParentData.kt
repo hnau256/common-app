@@ -1,0 +1,11 @@
+package hnau.common.app.projector.uikit.table.layout
+
+import androidx.compose.ui.layout.IntrinsicMeasurable
+
+data class TableParentData(
+    var weight: Float? = null,
+)
+
+val IntrinsicMeasurable.tableParentData: TableParentData?
+    get() = parentData as? TableParentData
+
