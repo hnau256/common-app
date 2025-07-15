@@ -1,28 +1,44 @@
 package hnau.common.app.projector.utils
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import kotlinx.coroutines.Dispatchers
+import androidx.compose.runtime.setValue
+import hnau.common.kotlin.MutableAccessor
+import hnau.common.kotlin.mapper.Mapper
+import hnau.common.kotlin.mapper.equality
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
-fun <T> MutableStateFlow<T>.collectAsMutableState(): MutableState<T> {
-    val state = collectAsState(Dispatchers.Unconfined)
-    return remember(this, state) {
+fun <I, O> MutableStateFlow<I>.collectAsMutableAccessor(
+    mapper: Mapper<I, O>,
+): MutableAccessor<O> {
 
-        object : MutableState<T> {
+    val source: MutableStateFlow<I> = this
 
-            override var value: T
-                get() = state.value
-                set(value) {
-                    this@collectAsMutableState.value = value
-                }
+    var cache: O by remember { mutableStateOf(source.value.let(mapper.direct)) }
 
-            override fun component1(): T = value
-
-            override fun component2(): (T) -> Unit = ::value::set
+    LaunchedEffect(source) {
+        source.collect { newValue ->
+            cache = newValue.let(mapper.direct)
         }
     }
+
+    return remember(source) {
+        MutableAccessor(
+            get = { cache },
+            set = { newValue ->
+                cache = newValue
+                source.value = newValue.let(mapper.reverse)
+            }
+        )
+    }
 }
+
+@Composable
+fun <T> MutableStateFlow<T>.collectAsMutableAccessor(): MutableAccessor<T> =
+    collectAsMutableAccessor(
+        mapper = remember { Mapper.equality() },
+    )
