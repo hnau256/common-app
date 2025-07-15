@@ -6,8 +6,8 @@ allprojects {
         maven("https://jitpack.io")
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-    group = "com.github.hnau256"
-    version = "1.0.1"
+    group = "com.github.hnau256.common-app"
+    version = "1.1.0"
 }
 
 

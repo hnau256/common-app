@@ -1,1 +1,1 @@
-./gradlew :model:publishToMavenLocal && ./gradlew :projector:publishToMavenLocal
+./gradlew :model:publishToMavenLocal :projector:publishToMavenLocal

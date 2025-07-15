@@ -1,14 +1,14 @@
 [versions]
 #tools
-kotlin = "2.1.20"
+kotlin = "2.2.0"
 java = "VERSION_17"
-androidGradlePlugin = "8.9.2"
-androidCompileSdk = "35"
-androidMinSdk = "24"
+androidGradlePlugin = "8.11.1"
+androidCompileSdk = "36"
+androidMinSdk = "21"
 composeDesktop = "1.8.2"
 #libs
 arrow = "2.1.2"
-kotlinSerialization = "1.8.1"
+kotlinSerialization = "1.9.0"
 kotlinCoroutines = "1.10.2"
 
 [plugins]
@@ -22,7 +22,7 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeDes
 # kotlin
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinCoroutines" }
-kotlin-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version = "0.7.0" }
+kotlin-io = { module = "org.jetbrains.kotlinx:kotlinx-io-core", version = "0.8.0" }
 kotlin-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.4.0" }
 #android
 android-appcompat = { module = "androidx.appcompat:appcompat", version = "1.7.1" }
@@ -32,5 +32,5 @@ android-activityCompose = { module = "androidx.activity:activity-compose", versi
 arrow-core = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
 arrow-serialization = { module = "io.arrow-kt:arrow-core-serialization", version.ref = "arrow" }
 #hnau
-hnau-kotlin = { module = "com.github.hnau256.common-kotlin:common-kotlin", version = "1.0.5" }
+hnau-kotlin = { module = "com.github.hnau256.common-kotlin:common-kotlin", version = "1.1.0" }
 hnau-dynamiccolor = { module = "com.github.hnau256:common-dynamiccolor", version = "1.0.0" }
