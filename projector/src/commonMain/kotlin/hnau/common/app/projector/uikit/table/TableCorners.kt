@@ -1,5 +1,10 @@
 package hnau.common.app.projector.uikit.table
 
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Shape
+import hnau.common.app.projector.uikit.shape.HnauShape
+import hnau.common.app.projector.uikit.shape.create
+
 @JvmInline
 value class TableCorners private constructor(
     private val packed: Byte,
@@ -69,6 +74,15 @@ value class TableCorners private constructor(
     ) { (name, opened) ->
         "$name:${if (opened) "opened" else "closed"}"
     }
+
+    val shape: Shape
+        @Composable
+        get() = HnauShape.create(
+            startTopRoundCorners = startTopIsOpened,
+            startBottomRoundCorners = startBottomIsOpened,
+            endTopRoundCorners = endTopIsOpened,
+            endBottomRoundCorners = endBottomIsOpened,
+        )
 
     companion object {
 
