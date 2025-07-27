@@ -20,11 +20,10 @@ import hnau.common.app.projector.utils.clickableOption
 fun HnauButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    style: ContainerStyle = ContainerStyle.Neutral,
+    style: ContainerStyle = ContainerStyle.neutral.rememberContainerStyle(),
     shape: Shape = HnauShape(),
     content: @Composable () -> Unit,
 ) {
-    val style = style.rememberStyle()
     Box(
         modifier = modifier
             .clip(shape)
