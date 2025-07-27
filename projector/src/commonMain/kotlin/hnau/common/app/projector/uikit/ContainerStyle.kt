@@ -5,47 +5,70 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 
-enum class ContainerStyle {
-    Neutral,
-    Primary,
-    Secondary,
-    Tertiary,
-    Error,
-    ;
+data class ContainerStyle(
+    val container: Color,
+    val content: Color,
+) {
 
-    data class Style(
-        val container: Color,
-        val content: Color,
-    )
+    fun interface Factory {
 
-    @Composable
-    fun rememberStyle(): Style {
-        val colors = MaterialTheme.colorScheme
-        return remember(this, colors) {
-            when (this) {
-                Neutral -> Style(
-                    container = colors.surfaceContainer,
-                    content = colors.onSurface,
+        @Composable
+        fun rememberContainerStyle(): ContainerStyle
+    }
+
+    companion object {
+
+        val neutral = Factory {
+            val container = MaterialTheme.colorScheme.surfaceContainer
+            val content = MaterialTheme.colorScheme.onSurface
+            remember(container, content) {
+                ContainerStyle(
+                    container = container,
+                    content = content,
                 )
+            }
+        }
 
-                Primary -> Style(
-                    container = colors.primaryContainer,
-                    content = colors.onPrimaryContainer,
+        val primary = Factory {
+            val container = MaterialTheme.colorScheme.primaryContainer
+            val content = MaterialTheme.colorScheme.onPrimaryContainer
+            remember(container, content) {
+                ContainerStyle(
+                    container = container,
+                    content = content,
                 )
+            }
+        }
 
-                Secondary -> Style(
-                    container = colors.secondaryContainer,
-                    content = colors.onSecondaryContainer,
+        val secondary = Factory {
+            val container = MaterialTheme.colorScheme.secondaryContainer
+            val content = MaterialTheme.colorScheme.onSecondaryContainer
+            remember(container, content) {
+                ContainerStyle(
+                    container = container,
+                    content = content,
                 )
+            }
+        }
 
-                Tertiary -> Style(
-                    container = colors.tertiaryContainer,
-                    content = colors.onTertiaryContainer,
+        val tertiary = Factory {
+            val container = MaterialTheme.colorScheme.tertiaryContainer
+            val content = MaterialTheme.colorScheme.onTertiaryContainer
+            remember(container, content) {
+                ContainerStyle(
+                    container = container,
+                    content = content,
                 )
+            }
+        }
 
-                Error -> Style(
-                    container = colors.errorContainer,
-                    content = colors.onErrorContainer,
+        val error = Factory {
+            val container = MaterialTheme.colorScheme.errorContainer
+            val content = MaterialTheme.colorScheme.onErrorContainer
+            remember(container, content) {
+                ContainerStyle(
+                    container = container,
+                    content = content,
                 )
             }
         }
