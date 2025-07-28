@@ -20,14 +20,15 @@ import hnau.common.app.projector.utils.clickableOption
 fun HnauButton(
     onClick: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    style: ContainerStyle = ContainerStyle.neutral.rememberContainerStyle(),
+    style: ContainerStyle = ContainerStyle.neutral,
     shape: Shape = HnauShape(),
     content: @Composable () -> Unit,
 ) {
+    val colors = style.rememberColors()
     Box(
         modifier = modifier
             .clip(shape)
-            .background(style.container)
+            .background(colors.container)
             .clickableOption(onClick)
             .padding(horizontal = Dimens.separation)
             .heightIn(min = 48.dp),
@@ -37,7 +38,7 @@ fun HnauButton(
             null -> 0.75f
             else -> 1f
         }
-        val contentColor = style.content.copy(alpha = alpha)
+        val contentColor = colors.content.copy(alpha = alpha)
         CompositionLocalProvider(
             LocalContentColor provides contentColor,
         ) {
