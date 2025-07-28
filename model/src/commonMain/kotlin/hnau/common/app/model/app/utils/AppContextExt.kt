@@ -2,26 +2,28 @@ package hnau.common.app.model.app.utils
 
 import arrow.core.getOrElse
 import arrow.core.toOption
-import hnau.common.kotlin.mapper.Mapper
-import hnau.common.kotlin.mapper.nameToEnum
-import hnau.common.kotlin.mapper.nullable
-import hnau.common.kotlin.mapper.stringToBoolean
-import hnau.common.app.model.ThemeBrightness
 import hnau.common.app.model.app.AppContext
-import hnau.common.app.model.color.material.MaterialHue
 import hnau.common.app.model.file.File
 import hnau.common.app.model.file.plus
 import hnau.common.app.model.preferences.impl.FileBasedPreferences
 import hnau.common.app.model.preferences.map
 import hnau.common.app.model.preferences.mapOption
 import hnau.common.app.model.preferences.withDefault
+import hnau.common.app.model.theme.Hue
+import hnau.common.app.model.theme.ThemeBrightness
+import hnau.common.kotlin.mapper.Mapper
+import hnau.common.kotlin.mapper.nameToEnum
+import hnau.common.kotlin.mapper.nullable
+import hnau.common.kotlin.mapper.plus
+import hnau.common.kotlin.mapper.stringToBoolean
+import hnau.common.kotlin.mapper.stringToFloat
 import kotlinx.coroutines.CoroutineScope
 
 internal suspend fun AppContext(
     scope: CoroutineScope,
     defaultBrightness: ThemeBrightness?,
     defaultTryUseSystemHue: Boolean,
-    fallbackHue: MaterialHue,
+    fallbackHue: Hue,
     filesDir: File,
 ): AppContext {
     val preferences = FileBasedPreferences
@@ -64,8 +66,7 @@ internal suspend fun AppContext(
         fallbackHue = preferences["fallback_hue"]
             .map(
                 scope = scope,
-                mapper = Mapper
-                    .nameToEnum<MaterialHue>(),
+                mapper = Mapper.stringToFloat + Hue.floatMapper,
             )
             .withDefault(
                 scope = scope

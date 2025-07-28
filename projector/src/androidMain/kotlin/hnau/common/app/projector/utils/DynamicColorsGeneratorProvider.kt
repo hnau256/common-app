@@ -7,7 +7,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import hnau.common.app.model.ThemeBrightness
+import hnau.common.app.model.theme.ThemeBrightness
 
 actual fun provideDynamicColorsGenerator(): DynamicColorsGenerator? =
     AndroidDynamicColorsGenerator.createIfSupported()

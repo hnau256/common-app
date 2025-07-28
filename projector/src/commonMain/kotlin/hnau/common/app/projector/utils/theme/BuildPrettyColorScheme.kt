@@ -1,28 +1,26 @@
-package hnau.common.app.projector.utils
+package hnau.common.app.projector.utils.theme
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
-import hnau.common.app.model.ThemeBrightness
-import hnau.common.app.model.color.material.MaterialColors
-import hnau.common.app.model.color.material.MaterialHue
-import hnau.common.app.model.color.material.get
-import scheme.Scheme
+import dynamiccolor.Variant
+import hnau.common.app.model.theme.Hue
+import hnau.common.app.model.theme.ThemeBrightness
 
 fun buildPrettyColorScheme(
-    primaryHue: MaterialHue,
+    primaryHue: Hue,
     brightness: ThemeBrightness,
+    contrastLevel: Double = 1.0,
+    variant: Variant = Variant.TONAL_SPOT,
 ): ColorScheme {
-    val argb = MaterialColors[primaryHue].v600.let { color ->
-        color.r.toInt().shl(16) +
-                color.g.toInt().shl(8) +
-                color.b.toInt().shl(0)
-    }
-    val scheme = when (brightness) {
-        ThemeBrightness.Dark -> Scheme.dark(argb)
-        ThemeBrightness.Light -> Scheme.light(argb)
-    }
+
+    val scheme = DynamicScheme(
+        primaryHue = primaryHue,
+        brightness = brightness,
+        contrastLevel = contrastLevel,
+        variant = variant,
+    )
 
     val primary = Color(scheme.primary)
     val onPrimary = Color(scheme.onPrimary)
@@ -40,14 +38,14 @@ fun buildPrettyColorScheme(
     val onSurface = Color(scheme.onSurface)
     val surfaceVariant = Color(scheme.surfaceVariant)
     val onSurfaceVariant = Color(scheme.onSurfaceVariant)
-    val surfaceContainerLowest = Color(scheme.surface)
-    val surfaceContainerLow = Color(scheme.surface)
-    val surfaceContainer = Color(scheme.surface)
-    val surfaceContainerHigh = Color(scheme.surface)
-    val surfaceContainerHighest = Color(scheme.surface)
-    val surfaceBright = Color(scheme.surface)
-    val surfaceDim = Color(scheme.surface)
-    val surfaceTint = Color(scheme.surface)
+    val surfaceContainerLowest = Color(scheme.surfaceContainerLowest)
+    val surfaceContainerLow = Color(scheme.surfaceContainerLow)
+    val surfaceContainer = Color(scheme.surfaceContainer)
+    val surfaceContainerHigh = Color(scheme.surfaceContainerHigh)
+    val surfaceContainerHighest = Color(scheme.surfaceContainerHighest)
+    val surfaceBright = Color(scheme.surfaceBright)
+    val surfaceDim = Color(scheme.surfaceDim)
+    val surfaceTint = Color(scheme.surfaceTint)
     val inverseSurface = Color(scheme.inverseSurface)
     val inverseOnSurface = Color(scheme.inverseOnSurface)
     val inversePrimary = Color(scheme.inversePrimary)

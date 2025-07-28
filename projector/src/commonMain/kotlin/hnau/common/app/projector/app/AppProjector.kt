@@ -3,7 +3,6 @@ package hnau.common.app.projector.app
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -12,12 +11,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import hnau.common.kotlin.ifNull
 import hnau.common.kotlin.ifTrue
-import hnau.common.app.model.ThemeBrightness
+import hnau.common.app.model.theme.ThemeBrightness
 import hnau.common.app.model.app.AppModel
 import hnau.common.app.model.goback.GlobalGoBackHandler
 import hnau.common.app.model.goback.GlobalGoBackHandlerImpl
 import hnau.common.app.projector.utils.DynamicColorsGenerator
-import hnau.common.app.projector.utils.buildPrettyColorScheme
+import hnau.common.app.projector.utils.theme.buildPrettyColorScheme
 import hnau.common.app.projector.utils.provideDynamicColorsGenerator
 import hnau.common.app.projector.utils.system
 import kotlinx.coroutines.CoroutineScope

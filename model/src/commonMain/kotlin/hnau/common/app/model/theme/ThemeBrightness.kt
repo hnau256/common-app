@@ -1,4 +1,4 @@
-package hnau.common.app.model 
+package hnau.common.app.model.theme
 
 enum class ThemeBrightness {
     Light,
