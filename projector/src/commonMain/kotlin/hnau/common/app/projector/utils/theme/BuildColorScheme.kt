@@ -3,23 +3,56 @@ package hnau.common.app.projector.utils.theme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import dynamiccolor.Variant
 import hnau.common.app.model.theme.Hue
 import hnau.common.app.model.theme.ThemeBrightness
+import hnau.common.app.projector.utils.system
 
-fun buildPrettyColorScheme(
-    primaryHue: Hue,
+private fun calcColorSchemeHash(
     brightness: ThemeBrightness,
-    contrastLevel: Double = 1.0,
-    variant: Variant = Variant.TONAL_SPOT,
+    hue: Hue,
+    config: DynamicSchemeConfig,
+): Int {
+    var result = brightness.hashCode()
+    result = result * 31 + (hue.hue * 360).toInt()
+    result = result * 31 + config.hashCode()
+    return result
+}
+
+private val colorSchemeCache: MutableMap<Int, ColorScheme> = HashMap()
+
+@Composable
+fun rememberColorScheme(
+    hue: Hue,
+    config: DynamicSchemeConfig,
+): ColorScheme {
+    val brightness = ThemeBrightness.system
+    return colorSchemeCache.getOrPut(
+        calcColorSchemeHash(
+            brightness = brightness,
+            hue = hue,
+            config = config,
+        )
+    ) {
+        buildColorScheme(
+            hue = hue,
+            config = config,
+            brightness = brightness,
+        )
+    }
+}
+
+fun buildColorScheme(
+    hue: Hue,
+    brightness: ThemeBrightness,
+    config: DynamicSchemeConfig = DynamicSchemeConfig.default,
 ): ColorScheme {
 
     val scheme = DynamicScheme(
-        primaryHue = primaryHue,
+        hue = hue,
         brightness = brightness,
-        contrastLevel = contrastLevel,
-        variant = variant,
+        config = config,
     )
 
     val primary = Color(scheme.primary)

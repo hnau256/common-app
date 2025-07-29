@@ -7,7 +7,7 @@ allprojects {
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
     group = "com.github.hnau256.common-app"
-    version = "1.6.0"
+    version = "1.7.0"
 }
 
 
