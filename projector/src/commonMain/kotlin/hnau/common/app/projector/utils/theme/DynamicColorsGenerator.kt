@@ -1,4 +1,4 @@
-package hnau.common.app.projector.utils
+package hnau.common.app.projector.utils.theme
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable

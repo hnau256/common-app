@@ -15,10 +15,10 @@ import hnau.common.app.model.theme.ThemeBrightness
 import hnau.common.app.model.app.AppModel
 import hnau.common.app.model.goback.GlobalGoBackHandler
 import hnau.common.app.model.goback.GlobalGoBackHandlerImpl
-import hnau.common.app.projector.utils.DynamicColorsGenerator
+import hnau.common.app.projector.utils.theme.DynamicColorsGenerator
 import hnau.common.app.projector.utils.theme.buildColorScheme
-import hnau.common.app.projector.utils.provideDynamicColorsGenerator
-import hnau.common.app.projector.utils.system
+import hnau.common.app.projector.utils.theme.provideDynamicColorsGenerator
+import hnau.common.app.projector.utils.theme.system
 import hnau.common.app.projector.utils.theme.DynamicSchemeConfig
 import kotlinx.coroutines.CoroutineScope
 

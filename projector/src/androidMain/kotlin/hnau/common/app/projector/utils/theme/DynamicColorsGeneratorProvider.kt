@@ -1,4 +1,4 @@
-package hnau.common.app.projector.utils
+package hnau.common.app.projector.utils.theme
 
 import android.os.Build
 import androidx.annotation.RequiresApi

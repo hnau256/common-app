@@ -9,17 +9,17 @@ import kotlin.jvm.JvmInline
 @Serializable(Hue.Serializer::class)
 @JvmInline
 value class Hue(
-    val hue: Float,
+    val degrees: Double,
 ) {
 
-    object Serializer: MappingKSerializer<Float, Hue>(
-        base = Float.serializer(),
-        mapper = floatMapper,
+    object Serializer: MappingKSerializer<Double, Hue>(
+        base = Double.serializer(),
+        mapper = doubleMapper,
     )
 
     companion object {
 
-        val floatMapper: Mapper<Float, Hue> =
-            Mapper(::Hue, Hue::hue)
+        val doubleMapper: Mapper<Double, Hue> =
+            Mapper(::Hue, Hue::degrees)
     }
 }

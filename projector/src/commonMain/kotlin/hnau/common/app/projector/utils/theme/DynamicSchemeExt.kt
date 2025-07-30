@@ -13,7 +13,7 @@ fun DynamicScheme(
 ): DynamicScheme {
 
     val primary = Hct.from(
-        /* hue = */ hue.hue * 360.0,
+        /* hue = */ hue.degrees,
         /* chroma = */ config.chroma,
         /* tone = */ config.tone[brightness],
     )

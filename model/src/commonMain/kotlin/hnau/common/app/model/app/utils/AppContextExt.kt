@@ -16,6 +16,7 @@ import hnau.common.kotlin.mapper.nameToEnum
 import hnau.common.kotlin.mapper.nullable
 import hnau.common.kotlin.mapper.plus
 import hnau.common.kotlin.mapper.stringToBoolean
+import hnau.common.kotlin.mapper.stringToDouble
 import hnau.common.kotlin.mapper.stringToFloat
 import kotlinx.coroutines.CoroutineScope
 
@@ -66,7 +67,7 @@ internal suspend fun AppContext(
         fallbackHue = preferences["fallback_hue"]
             .map(
                 scope = scope,
-                mapper = Mapper.stringToFloat + Hue.floatMapper,
+                mapper = Mapper.stringToDouble + Hue.doubleMapper,
             )
             .withDefault(
                 scope = scope
