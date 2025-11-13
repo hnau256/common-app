@@ -13,8 +13,6 @@ import hnau.common.kotlin.ifNull
 import hnau.common.kotlin.ifTrue
 import hnau.common.app.model.theme.ThemeBrightness
 import hnau.common.app.model.app.AppModel
-import hnau.common.app.model.goback.GlobalGoBackHandler
-import hnau.common.app.model.goback.GlobalGoBackHandlerImpl
 import hnau.common.app.projector.utils.theme.DynamicColorsGenerator
 import hnau.common.app.projector.utils.theme.buildColorScheme
 import hnau.common.app.projector.utils.theme.provideDynamicColorsGenerator
@@ -26,14 +24,13 @@ class AppProjector<M, S, P>(
     scope: CoroutineScope,
     private val model: AppModel<M, S>,
     private val schemeConfig: DynamicSchemeConfig = DynamicSchemeConfig.default,
-    createProjector: (CoroutineScope, M, GlobalGoBackHandler) -> P,
+    createProjector: (CoroutineScope, M) -> P,
     private val content: @Composable (P) -> Unit,
 ) {
 
     private val projector = createProjector(
         scope,
         model.model,
-        GlobalGoBackHandlerImpl(model.goBackHandler),
     )
 
     private val dynamicColorsGenerator: DynamicColorsGenerator? =

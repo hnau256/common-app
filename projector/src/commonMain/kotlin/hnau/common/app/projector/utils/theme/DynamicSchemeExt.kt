@@ -3,7 +3,7 @@ package hnau.common.app.projector.utils.theme
 import dynamiccolor.ColorSpecs
 import dynamiccolor.DynamicScheme
 import hct.Hct
-import hnau.common.app.model.theme.Hue
+import hnau.common.app.model.utils.Hue
 import hnau.common.app.model.theme.ThemeBrightness
 
 fun DynamicScheme(
@@ -13,7 +13,7 @@ fun DynamicScheme(
 ): DynamicScheme {
 
     val primary = Hct.from(
-        /* hue = */ hue.degrees,
+        /* hue = */ hue.degrees.toDouble(),
         /* chroma = */ config.chroma,
         /* tone = */ config.tone[brightness],
     )

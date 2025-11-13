@@ -10,10 +10,6 @@ object Dimens {
     val border = 1.dp
     val chipsSeparation = 2.dp
     val divider = 1.dp
-    val rowHeight = 64.dp
-    val fabSize = 56.dp
-    val fabSeparationVertical = separation + fabSize + separation
-    val fabExtendedSeparationVertical = separation + 48.dp + separation
     val cornerRadius = 12.dp
     val cornerRadiusMin = 4.dp
 }

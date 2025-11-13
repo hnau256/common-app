@@ -5,8 +5,10 @@ import kotlinx.coroutines.flow.update
 
 fun <T> MutableStateFlow<NonEmptyStack<T>>.push(
     element: T,
-) = update { stack ->
-    stack + element
+) {
+    update { stack ->
+        stack + element
+    }
 }
 
 fun <T> NonEmptyStack<T>.tryDropLast(): NonEmptyStack<T>? {

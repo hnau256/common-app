@@ -39,9 +39,6 @@ class AppModel<M, S>(
     val savableState: SavedState
         get() = modelSkeletonMapper.reverse(modelSkeleton).let(::SavedState)
 
-    val goBackHandler: GoBackHandler =
-        seed.extractGoBackHandler(model)
-
     companion object {
 
         private val json: Json = Json {

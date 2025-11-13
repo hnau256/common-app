@@ -12,6 +12,8 @@ data class ListScrollState(
 ) {
 
     companion object {
-        val initial = ListScrollState()
+
+        val initial: ListScrollState
+            get() = ListScrollState()
     }
 }

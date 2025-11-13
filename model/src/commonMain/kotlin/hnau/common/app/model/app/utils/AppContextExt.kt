@@ -9,7 +9,7 @@ import hnau.common.app.model.preferences.impl.FileBasedPreferences
 import hnau.common.app.model.preferences.map
 import hnau.common.app.model.preferences.mapOption
 import hnau.common.app.model.preferences.withDefault
-import hnau.common.app.model.theme.Hue
+import hnau.common.app.model.utils.Hue
 import hnau.common.app.model.theme.ThemeBrightness
 import hnau.common.kotlin.mapper.Mapper
 import hnau.common.kotlin.mapper.nameToEnum
@@ -17,7 +17,7 @@ import hnau.common.kotlin.mapper.nullable
 import hnau.common.kotlin.mapper.plus
 import hnau.common.kotlin.mapper.stringToBoolean
 import hnau.common.kotlin.mapper.stringToDouble
-import hnau.common.kotlin.mapper.stringToFloat
+import hnau.common.kotlin.mapper.stringToInt
 import kotlinx.coroutines.CoroutineScope
 
 internal suspend fun AppContext(
@@ -67,7 +67,7 @@ internal suspend fun AppContext(
         fallbackHue = preferences["fallback_hue"]
             .map(
                 scope = scope,
-                mapper = Mapper.stringToDouble + Hue.doubleMapper,
+                mapper = Mapper.stringToInt + Hue.intMapper,
             )
             .withDefault(
                 scope = scope
